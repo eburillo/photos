@@ -1,0 +1,15 @@
+.app {
+  min-height: 100dvh;
+}
+
+.content {
+  display: flex;
+}
+
+.controls {
+  flex: 2;
+}
+
+.preview {
+  flex: 1;
+}
