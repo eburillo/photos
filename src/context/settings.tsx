@@ -1,32 +1,22 @@
-import { createContext, useState, ReactElement, Dispatch } from 'react'
-
-type SettingsType = {
-  backgroundSrc: string
-  imageSrc: string
-  text: string
-}
+import { createContext, ReactElement, Dispatch, useReducer } from 'react'
+import type { ActionType, ISettings } from '../types'
+import { settingsReducer, settingsInitialState } from '../reducers/settings'
 
 interface SettingsContext {
-  settings: SettingsType
-  setSettings: Dispatch<SettingsType>
-}
-
-const settingsInitialState = {
-  backgroundSrc: '',
-  imageSrc: '',
-  text: ''
+  settings: ISettings
+  dispatch: Dispatch<ActionType>
 }
 
 export const SettingsContext = createContext<SettingsContext>({
   settings: settingsInitialState,
-  setSettings: () => undefined
+  dispatch: () => undefined
 })
 
 export const SettingsProvider = ({ children }: { children: ReactElement }) => {
-  const [settings, setSettings] = useState(settingsInitialState)
+  const [settings, dispatch] = useReducer(settingsReducer, settingsInitialState)
 
   return (
-    <SettingsContext.Provider value={{ settings, setSettings }}>
+    <SettingsContext.Provider value={{ settings, dispatch }}>
       {children}
     </SettingsContext.Provider>
   )

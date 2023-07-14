@@ -13,7 +13,7 @@ function App() {
         />
       </div>
 
-      <div className='flex flex-col md:flex-row p-4'>
+      <div className='flex flex-col md:flex-row p-4 max-w-[1280px] my-0 mx-auto'>
         <Settings />
         <Preview />
       </div>
